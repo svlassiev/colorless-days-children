@@ -20,7 +20,7 @@ private const val folderIndexPage = "folderIndex.html"
 private const val previewPage = "preview.html"
 
 private val content = listOf(
-        FolderContent("Путешествие по Байкальскому хребту.", "baikal"),
+        FolderContent("Путешествие по Байкальскому хребту.", "baikal/old"),
         FolderContent("Фотографии с выпускного вечера.", "party", 77, "party"),
         FolderContent("Фотографии.", "photo", 46, "img"),
         FolderContent("Девочка.", "bjaha"),
