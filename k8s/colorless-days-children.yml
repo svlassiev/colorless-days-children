@@ -1,0 +1,61 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: colorless-days-children
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: colorless-days-children
+  labels:
+    app: colorless-days-children
+spec:
+  backend:
+    serviceName: colorless-days-children
+    servicePort: http
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: colorless-days-children
+  labels:
+    app: colorless-days-children
+spec:
+  type: LoadBalancer
+  selector:
+    app: colorless-days-children
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: colorless-days-children
+  labels:
+    app: colorless-days-children
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: colorless-days-children
+  template:
+    metadata:
+      labels:
+        app: colorless-days-children
+    spec:
+      imagePullSecrets:
+        - name: svlassiev-dockerhub
+      containers:
+        - name: colorless-days-children
+          image: svlassiev/colorless-days-children:cef9e62a
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            requests:
+              cpu: 10m
+              memory: 10M
+            limits:
+              cpu: 100m
+              memory: 2560M
+
