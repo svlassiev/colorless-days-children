@@ -46,7 +46,7 @@ spec:
         - name: svlassiev-dockerhub
       containers:
         - name: colorless-days-children
-          image: svlassiev/colorless-days-children:cef9e62a
+          image: svlassiev/colorless-days-children:1.1
           imagePullPolicy: Always
           ports:
             - name: http

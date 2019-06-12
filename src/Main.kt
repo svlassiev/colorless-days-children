@@ -29,11 +29,11 @@ private val content = listOf(
         FolderContent("Поход 6-7 мая 2006 года.", "pohod", 36, "pohod"),
         FolderContent("Фотографии из университета, весна 2006.", "University0506", 54, "University0506_"),
         FolderContent("Окончание летней сессии 2005 года у нас в гостях.", "18062005", 90, "18062005_"),
-        FolderContent("Поход 27-28 июня 2006 года.", "Pohod27-2806", 58, "Pohod"),
+        FolderContent("Поход 27-28 июня 2006 года.", "Pohod27-2806", 58, "pohod"),
         FolderContent("Гости 29 июня 2006 года.", "29062006", 36, "28062006_"),
         FolderContent("День группы.", "DDay", 49, "DDay"),
         FolderContent("Фотографии 2003-2006.", "photoalot", 135, "photo"),
-        FolderContent("Лето 2006", "Summer2006", 320),
+        FolderContent("Лето 2006", "summer2006", 320),
         FolderContent("Удачные фотографии.", "dacha", 65),
         FolderContent("Поход 9-10 сентября 2006 года.", "pohod 9-10 sentjabrja", 82),
         FolderContent("Прогулка в Москве 6-7 августа 2006 года.", "moskow", 129),
@@ -47,7 +47,7 @@ private val content = listOf(
         FolderContent("Классики.", "classics", 9, "school0"),
         FolderContent("19", "cumpl", 68),
         FolderContent("Родача.", "rodacha", 60),
-        FolderContent("Прогулка 26 июня 2007 года.", "progulka", 53),
+        FolderContent("Прогулка 26 июня 2007 года.", "Progulka", 53),
         FolderContent("Лето 2007 года.", "summer2007"),
         FolderContent("Первосентябрье 2007.", "197", 94),
         FolderContent("Третий традиционный осенний поход. 14-15 сентября 2007 года.", "pohod1497", 94),
@@ -69,29 +69,29 @@ private val content = listOf(
         FolderContent("Четвёртый традиционный осенний поход.", "4trados", 26),
         FolderContent("Игры отличников и прогулка с замечательной девочкой.", "september8", 12),
         FolderContent("Прогулка с Машей и Ксюшей.", "Lomonosov", 23),
-        FolderContent("Окончание лета 2008 года.", "Summer8", 81),
+        FolderContent("Окончание лета 2008 года.", "summer8", 81),
         FolderContent("Праздник.", "22118", 13),
         FolderContent("День рождения Ксюши.", "5128", 16),
         FolderContent("Спорт и отдых.", "Sport&rest", 24),
-        FolderContent("Немного о школе и мероприятиях на ПМ-ПУ.", "prenew2009", 15),
-        FolderContent("Новый 2009 год.", "new2009", 50),
-        FolderContent("Отдых в деревне.", "viljan9", 27),
-        FolderContent("Хибины 2009.", "hibiny9", 138),
+        FolderContent("Немного о школе и мероприятиях на ПМ-ПУ.", "PreNew2009", 15),
+        FolderContent("Новый 2009 год.", "New2009", 50),
+        FolderContent("Отдых в деревне.", "VilJan9", 27),
+        FolderContent("Хибины 2009.", "Hibiny9", 138),
         FolderContent("По весне.", "spring9", 30),
         FolderContent("Встречи.", "PartySpring9", 25),
         FolderContent("Пятый традиционный майский поход.", "5tradmay", 44),
         FolderContent("5.09", "509", 25),
         FolderContent("Начало лета девятого года.", "summer9", 66),
         FolderContent("Армия - это я!", "army", 191),
-        FolderContent("Свадьба.", "wedkate", 101),
+        FolderContent("Свадьба.", "wedKate", 101),
         FolderContent("Пятый традиционный осенний поход.", "pohodX", 30),
         FolderContent("Моменты.", "summerfall9", 49),
-        FolderContent("Вторая редакция.", "baikal", 127),
+        FolderContent("Вторая редакция.", "Baikal", 127),
         FolderContent("Окончание девятого года.", "fallwinter9", 43),
         FolderContent("Новый 2010 год.", "hny10", 37),
         FolderContent("Зимняя база 2010.", "210"),
         FolderContent("Начало 2010.", "110", 22),
-        FolderContent("Каток.", "Skating14210", 23),
+        FolderContent("Каток.", "skating14210", 23),
         FolderContent("Предвесенний альбом.", "winter10", 47),
         FolderContent("Озеро Сейдозеро.", "Lovozero10", 108),
         FolderContent("О негодяях.", "MarchApril10", 90),
@@ -101,7 +101,7 @@ private val content = listOf(
         FolderContent("Шестой традиционный осенний поход.", "6trados", 41),
         FolderContent("Лето 2010 и немного осени.", "summerfall10", 60),
         FolderContent("Как я погулял в Праге.", "VisitToNastya", 63),
-        FolderContent("Долгая зима.", "winter1011", 66),
+        FolderContent("Долгая зима.", "Winter1011", 66),
         FolderContent("Ловозёрские и Хибинские тундры.", "ArcticCircleBeyound", 99),
         FolderContent("Седьмой традиционный майский поход.", "7tradmay", 12),
         FolderContent("Свадьба Тани и Андрея.", "TanyaAndrey", 43),
@@ -202,11 +202,11 @@ object Content: View("content") {
         val list = document.createElement("div") as HTMLDivElement
         val listElement = document.createElement("div") as HTMLDivElement
 
-        val dataList = if (hideTop) content.takeLast(10) else content
-        for ((name, path) in dataList) {
+        val dataList = if (hideTop) content.filter { it.numberOfPhotos > 0 }.takeLast(10) else content.filter { it.numberOfPhotos > 0 }
+        dataList.forEach {
             val anchor = document.createElement("a") as HTMLAnchorElement
-            anchor.href = "${folderIndexPage}?folder=$path"
-            anchor.appendText(name)
+            anchor.href = "${folderIndexPage}?folder=${it.folder}"
+            anchor.appendText(it.title)
             listElement.append(anchor)
             listElement.addBreak()
         }
