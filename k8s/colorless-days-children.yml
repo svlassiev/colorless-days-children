@@ -18,7 +18,7 @@ metadata:
   labels:
     app: colorless-days-children
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: colorless-days-children
   ports:
@@ -46,7 +46,7 @@ spec:
         - name: svlassiev-dockerhub
       containers:
         - name: colorless-days-children
-          image: svlassiev/colorless-days-children:1.1
+          image: svlassiev/colorless-days-children:1.2
           imagePullPolicy: Always
           ports:
             - name: http
@@ -58,4 +58,3 @@ spec:
             limits:
               cpu: 100m
               memory: 2560M
-
