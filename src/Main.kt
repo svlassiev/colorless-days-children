@@ -6,7 +6,7 @@ import kotlin.random.Random
 import kotlin.random.nextInt
 
 fun main() {
-    setOf(Title, Header, Expander, Content, Home, Spoiler, FolderTitle, FolderHeader, Table, PreviewPanel, Comments).
+    setOf(Title, Header, Expander, Content, Home, Spoiler, FolderTitle, FolderHeader, Table, PreviewPanel, Comments, Hiking).
             forEach { instance -> if (instance.viewElement != null) instance.show() }
 }
 
@@ -359,3 +359,12 @@ object PreviewPanel : View("preview-panel") {
 }
 
 object Comments : View("comments")
+
+object Hiking: View("hiking") {
+    override fun show() {
+        val hiking = document.createElement("a") as HTMLAnchorElement
+        hiking.href = "hiking"
+        hiking.appendText("Поход")
+        viewElement?.appendChild(hiking)
+    }
+}
