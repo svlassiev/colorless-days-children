@@ -13,10 +13,18 @@ spec:
   rules:
     - http:
         paths:
+          - path: /*
+            backend:
+              serviceName: colorless-days-children
+              servicePort: http
+          - path: /hiking/*
+            backend:
+              serviceName: hiking
+              servicePort: http
           - path: /hiking
             backend:
               serviceName: hiking
-              servicePort: 80
+              servicePort: http
 ---
 kind: Service
 apiVersion: v1
