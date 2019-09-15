@@ -21,7 +21,23 @@ spec:
             backend:
               serviceName: hiking
               servicePort: http
+          - path: /hiking-api/*
+            backend:
+              serviceName: hiking-api
+              servicePort: http
           - path: /hiking
+            backend:
+              serviceName: hiking
+              servicePort: http
+          - path: /css/*
+            backend:
+              serviceName: hiking
+              servicePort: http
+          - path: /js/*
+            backend:
+              serviceName: hiking
+              servicePort: http
+          - path: /favicon.ico
             backend:
               serviceName: hiking
               servicePort: http
