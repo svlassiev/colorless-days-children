@@ -27,6 +27,6 @@ spec:
   dnsNames:
     - www.serg.vlassiev.info
   issuerRef:
-    name: letsencrypt-producation
+    name: letsencrypt-production
     kind: ClusterIssuer
   secretName: letsencrypt-serg-vlassiev-info
