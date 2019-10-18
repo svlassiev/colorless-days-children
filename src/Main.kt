@@ -10,7 +10,7 @@ fun main() {
             forEach { instance -> if (instance.viewElement != null) instance.show() }
 }
 
-sealed class View(val id: String) {
+sealed class View(id: String) {
     val viewElement = if (document.getElementById(id) != null) document.getElementById(id) else null
     open fun show() {}
 }
@@ -366,5 +366,6 @@ object Hiking: View("hiking") {
         hiking.href = "hiking"
         hiking.appendText("Поход")
         viewElement?.appendChild(hiking)
+        viewElement?.addBreak()
     }
 }
