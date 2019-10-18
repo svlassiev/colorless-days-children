@@ -30,3 +30,37 @@ spec:
     name: letsencrypt-production
     kind: ClusterIssuer
   secretName: letsencrypt-serg-vlassiev-info
+---
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Issuer
+metadata:
+  name: letsencrypt-production-60-lds
+  labels:
+    app: sixty-lds
+spec:
+  acme:
+    # You must replace this email address with your own.
+    # Let's Encrypt will use this to contact you about expiring
+    # certificates, and issues related to your account.
+    email: "user+60lds@example.com"
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      # Secret resource used to store the account's private key.
+      name: letsencrypt-production-60-lds
+    # Add a single challenge solver, HTTP01 using nginx
+    solvers:
+      - http01:
+          ingress:
+            name: sixty-lds
+---
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: sixty-lds
+  labels:
+    app: sixty-lds
+spec:
+  commonName: "xn--60-llcdbsrkrwijg.xn--p1ai"
+  issuerRef:
+    name: letsencrypt-production-60-lds
+  secretName: letsencrypt-sixty-lds
