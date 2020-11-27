@@ -1,7 +1,7 @@
 import org.w3c.dom.*
 import org.w3c.dom.url.URL
-import kotlin.browser.document
-import kotlin.dom.appendText
+import kotlinx.browser.document
+import kotlinx.dom.appendText
 import kotlin.random.Random
 import kotlin.random.nextInt
 
